@@ -25,18 +25,20 @@ export const createRoles = async () => {
 };
 
 export const createAdmin = async () => {
-  // check for an existing admin user
-  const user = await User.findOne({ email: "admin@localhost" });
-  // get roles _id
-  const roles = await Role.find({ name: { $in: ["admin", "moderator"] } });
 
-  if (!user) {
-    // create a new admin user
+  const user = await User.findOne({ email: "admin@localhost" });
+
+  const roles = await Role.find({ name: { $in: ["admin", "moderator"]}
+});
+
+
+  if( !user ){
+
     await User.create({
       username: "admin",
       email: "admin@localhost",
       password: await bcrypt.hash("admin", 10),
-      roles: roles.map((role) => role._id),
+      roles: roles.map( (role)  => role._id),
     });
     console.log('Admin User Created!')
   }
