@@ -12,7 +12,11 @@ router.use((req, res, next) => {
   next();
 });
 
-
+router.post(
+  "/signup",
+  [verifySignup.checkDuplicateUsernameOrEmail, verifySignup.checkRolesExisted],
+  authCtrl.signUp
+);
 
 router.post("/signin", authCtrl.signin);
 
