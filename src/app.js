@@ -20,7 +20,8 @@ app.set("pkg", pkg);
 app.set("port", process.env.PORT || 4000);
 app.set("json spaces", 4);
 
-// Middlewares
+
+// Middlewares 
 const corsOptions = {
   // origin: "http://localhost:3000",
 };
@@ -47,3 +48,5 @@ app.use("/api/users", usersRoutes);
 app.use("/api/auth", authRoutes);
 
 export default app;
+
+
